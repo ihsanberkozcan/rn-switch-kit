@@ -12,11 +12,18 @@ npm install rn-switch-kit
 
 
 ```js
-import { multiply } from 'rn-switch-kit';
+import RNSwitchKit from 'rn-switch-kit';
 
 // ...
 
-const result = await multiply(3, 7);
+      <RNSwitchKit
+        label="test"
+        onColor="blue"
+        offColor="red"
+        initialValue={true}
+        onToggle={(value) => handleChange(value)}
+      />
+
 ```
 
 
