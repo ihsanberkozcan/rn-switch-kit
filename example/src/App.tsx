@@ -1,12 +1,33 @@
-import { Text, View, StyleSheet } from 'react-native';
-import { multiply } from 'rn-switch-kit';
-
-const result = multiply(3, 7);
+import { View, StyleSheet } from 'react-native';
+import RNSwitchKit from 'rn-switch-kit';
 
 export default function App() {
+  const handleChange = (value: boolean) => {
+    console.log(value);
+  };
+
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <RNSwitchKit
+        label="test"
+        onColor="green"
+        offColor="gray"
+        initialValue={false}
+      />
+      <RNSwitchKit
+        label="test"
+        onColor="blue"
+        offColor="red"
+        initialValue={true}
+        onToggle={(value) => handleChange(value)}
+      />
+      <RNSwitchKit
+        label="test"
+        onColor="green"
+        offColor="gray"
+        initialValue={false}
+        labelPosition="right"
+      />
     </View>
   );
 }
