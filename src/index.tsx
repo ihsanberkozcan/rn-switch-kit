@@ -37,7 +37,7 @@ const RNSwitchKit: React.FC<RNSwitchKitProps> = ({
   const [isEnabled, setIsEnabled] = useState<boolean>(initialValue);
 
   const toggleSwitch = () => {
-    if (disabled) return; // Eğer disabled ise işlem yapma
+    if (disabled) return;
     const newValue = !isEnabled;
     setIsEnabled(newValue);
     if (onToggle) {
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
   switch: {
     width: 50,
-    height: 26,
+    height: 25,
     borderRadius: 13,
     padding: 2,
     justifyContent: 'center',
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   disabledSwitch: {
-    opacity: 0.5, // Devre dışı görünüm için şeffaflık
+    opacity: 0.5,
   },
 });
 
