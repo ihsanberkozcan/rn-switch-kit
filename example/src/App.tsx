@@ -1,25 +1,28 @@
-import { View, StyleSheet } from 'react-native';
+import { useState } from 'react';
+import { View, StyleSheet, Text } from 'react-native';
 import RNSwitchKit from 'rn-switch-kit';
 
 export default function App() {
-  const handleChange = (value: boolean) => {
-    console.log(value);
+  const [status1, setStatus1] = useState(true);
+  const handleChange1 = (value: boolean) => {
+    setStatus1(value);
   };
 
   return (
     <View style={styles.container}>
+      <Text>test 1: {status1 ? 'True' : 'False'}</Text>
       <RNSwitchKit
-        label="test"
+        label="test 1"
         onColor="green"
         offColor="gray"
-        initialValue={false}
+        initialValue={status1}
+        onToggle={(value) => handleChange1(value)}
       />
       <RNSwitchKit
         label="test"
         onColor="blue"
         offColor="red"
-        initialValue={true}
-        onToggle={(value) => handleChange(value)}
+        initialValue={status1}
       />
       <RNSwitchKit
         label="test"
@@ -27,6 +30,14 @@ export default function App() {
         offColor="gray"
         initialValue={false}
         labelPosition="right"
+      />
+      <RNSwitchKit
+        label="test"
+        onColor="green"
+        offColor="gray"
+        initialValue={false}
+        labelPosition="right"
+        disabled
       />
     </View>
   );
