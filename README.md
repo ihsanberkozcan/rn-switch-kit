@@ -2,7 +2,8 @@
 
 rn-switch-kit is a customizable React Native switch component, designed for seamless integration and modern UI needs.
 
-![Screenshot_1736354447](https://github.com/user-attachments/assets/2340e668-0706-42ff-b92d-3c4e3280a344)
+<img width="256" alt="Screenshot 2025-01-08 at 23 49 57" src="https://github.com/user-attachments/assets/ae640e55-416c-460a-8f5e-fa8789ded6ea" />
+
 
 
 ## Installation
