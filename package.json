@@ -1,6 +1,6 @@
 {
   "name": "rn-switch-kit",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "rn-switch-kit is a customizable React Native switch component, designed for seamless integration and modern UI needs.",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",

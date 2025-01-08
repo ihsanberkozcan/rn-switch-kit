@@ -19,6 +19,7 @@ interface RNSwitchKitProps {
   labelStyle?: StyleProp<TextStyle>;
   labelPosition?: 'left' | 'right';
   onToggle?: (value: boolean) => void;
+  disabled?: boolean;
 }
 
 const RNSwitchKit: React.FC<RNSwitchKitProps> = ({
@@ -31,10 +32,12 @@ const RNSwitchKit: React.FC<RNSwitchKitProps> = ({
   labelStyle,
   labelPosition = 'left',
   onToggle,
+  disabled = false,
 }) => {
   const [isEnabled, setIsEnabled] = useState<boolean>(initialValue);
 
   const toggleSwitch = () => {
+    if (disabled) return; // Eğer disabled ise işlem yapma
     const newValue = !isEnabled;
     setIsEnabled(newValue);
     if (onToggle) {
@@ -50,10 +53,18 @@ const RNSwitchKit: React.FC<RNSwitchKitProps> = ({
       <TouchableOpacity
         style={[
           styles.switch,
-          { backgroundColor: isEnabled ? onColor : offColor },
+          {
+            backgroundColor: disabled
+              ? offColor
+              : isEnabled
+                ? onColor
+                : offColor,
+          },
+          disabled && styles.disabledSwitch,
         ]}
         onPress={toggleSwitch}
-        activeOpacity={0.8}
+        activeOpacity={1}
+        disabled={disabled}
       >
         <View
           style={[
@@ -96,6 +107,9 @@ const styles = StyleSheet.create({
     height: 22,
     borderRadius: 11,
     position: 'absolute',
+  },
+  disabledSwitch: {
+    opacity: 0.5, // Devre dışı görünüm için şeffaflık
   },
 });
 
