@@ -65,6 +65,10 @@ const RNSwitchKit: React.FC<RNSwitchKitProps> = ({
         onPress={toggleSwitch}
         activeOpacity={1}
         disabled={disabled}
+        accessible={true}
+        accessibilityRole="switch"
+        accessibilityLabel={label}
+        accessibilityState={{ checked: isEnabled, disabled }}
       >
         <View
           style={[
