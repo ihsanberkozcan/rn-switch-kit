@@ -2,8 +2,8 @@
 
 rn-switch-kit is a customizable React Native switch component, designed for seamless integration and modern UI needs.
 
-<img width="256" alt="Screenshot 2025-01-08 at 23 49 57" src="https://github.com/user-attachments/assets/ae640e55-416c-460a-8f5e-fa8789ded6ea" />
 
+<img width="196" alt="Screenshot 2025-01-12 at 21 47 04" src="https://github.com/user-attachments/assets/07ab2178-a19e-49d4-85da-859f93b8bac0" />
 
 
 ## Installation
@@ -20,16 +20,44 @@ import RNSwitchKit from 'rn-switch-kit';
 
 // ...
 
+  const [status1, setStatus1] = useState(true);
+  const handleChange1 = (value: boolean) => {
+    setStatus1(value);
+  };
+
+// ...
+
+      <Text>test 1: {status1 ? 'True' : 'False'}</Text>
       <RNSwitchKit
-        label="test"
-        onColor="blue"
-        offColor="red"
-        initialValue={true}
-        onToggle={(value) => handleChange(value)}
+        label="test 1"
+        onColor="green"
+        offColor="gray"
+        initialValue={status1}
+        onToggle={(value) => handleChange1(value)}
       />
+
+// ...
+      <RNSwitchKit onColor="#f205c3" offColor="red" initialValue={status1} />
 
 ```
 
+## Props
+
+| Name            | Type                   | Default     | Description                                                                                 |
+|-----------------|------------------------|-------------|---------------------------------------------------------------------------------------------|
+| `label`         | `string`               | `undefined` | Optional label displayed next to the switch.                                               |
+| `onColor`       | `string`               | `#4caf50`   | Background color of the switch when it is in the "on" state.                               |
+| `offColor`      | `string`               | `#ccc`      | Background color of the switch when it is in the "off" state.                              |
+| `thumbColor`    | `string`               | `#fff`      | Color of the switch thumb.                                                                 |
+| `initialValue`  | `boolean`              | `false`     | Initial state of the switch (`true` for "on", `false` for "off").                          |
+| `style`         | `StyleProp<ViewStyle>` | `undefined` | Custom styles for the switch container.                                                   |
+| `labelStyle`    | `StyleProp<TextStyle>` | `undefined` | Custom styles for the label text.                                                         |
+| `labelPosition` | `'left' | 'right'`      | `'left'`    | Position of the label relative to the switch.                                              |
+| `onToggle`      | `(value: boolean) => void` | `undefined` | Callback function invoked when the switch is toggled. Receives the new state as a parameter. |
+| `disabled`      | `boolean`              | `false`     | Disables the switch when set to `true`.                                                   |
+| `width`         | `number`               | `100`       | Width of the container. If no `label` is provided, the width defaults to the switch size (`50`). |
+
+---
 
 ## Contributing
 
