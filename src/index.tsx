@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useRef, useState } from 'react';
 import {
   TouchableOpacity,
   View,
   Text,
   StyleSheet,
+  Animated,
   type StyleProp,
   type ViewStyle,
   type TextStyle,
@@ -20,6 +22,7 @@ interface RNSwitchKitProps {
   labelPosition?: 'left' | 'right';
   onToggle?: (value: boolean) => void;
   disabled?: boolean;
+  width?: number;
 }
 
 const RNSwitchKit: React.FC<RNSwitchKitProps> = ({
@@ -33,20 +36,43 @@ const RNSwitchKit: React.FC<RNSwitchKitProps> = ({
   labelPosition = 'left',
   onToggle,
   disabled = false,
+  width = 100,
 }) => {
   const [isEnabled, setIsEnabled] = useState<boolean>(initialValue);
+  const animatedValue = useRef(
+    new Animated.Value(initialValue ? 26 : 2)
+  ).current;
+
+  useEffect(() => {
+    setIsEnabled(initialValue);
+
+    Animated.timing(animatedValue, {
+      toValue: initialValue ? 27 : 2,
+      duration: 200,
+      useNativeDriver: false,
+    }).start();
+  }, [initialValue]);
 
   const toggleSwitch = () => {
     if (disabled) return;
     const newValue = !isEnabled;
     setIsEnabled(newValue);
+
+    Animated.timing(animatedValue, {
+      toValue: newValue ? 27 : 2,
+      duration: 200,
+      useNativeDriver: false,
+    }).start();
+
     if (onToggle) {
       onToggle(newValue);
     }
   };
 
+  const calculatedWidth = label ? width : 50;
+
   return (
-    <View style={[styles.container, style]}>
+    <View style={[styles.container, { width: calculatedWidth }, style]}>
       {label && labelPosition === 'left' && (
         <Text style={[styles.label, labelStyle]}>{label}</Text>
       )}
@@ -70,12 +96,12 @@ const RNSwitchKit: React.FC<RNSwitchKitProps> = ({
         accessibilityLabel={label}
         accessibilityState={{ checked: isEnabled, disabled }}
       >
-        <View
+        <Animated.View
           style={[
             styles.thumb,
             {
               backgroundColor: thumbColor,
-              transform: [{ translateX: isEnabled ? 26 : 2 }],
+              transform: [{ translateX: animatedValue }],
             },
           ]}
         />
@@ -92,8 +118,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 10,
-    width: 200,
+    padding: 0,
   },
   label: {
     fontSize: 16,
@@ -107,8 +132,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   thumb: {
-    width: 22,
-    height: 22,
+    width: 21,
+    height: 21,
     borderRadius: 11,
     position: 'absolute',
   },

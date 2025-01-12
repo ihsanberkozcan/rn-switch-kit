@@ -18,12 +18,16 @@ export default function App() {
         initialValue={status1}
         onToggle={(value) => handleChange1(value)}
       />
+
       <RNSwitchKit
         label="test"
         onColor="blue"
         offColor="red"
-        initialValue={status1}
+        initialValue={false}
       />
+
+      <RNSwitchKit onColor="#f205c3" offColor="red" initialValue={false} />
+
       <RNSwitchKit
         label="test"
         onColor="green"
@@ -48,5 +52,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    gap: 20,
   },
 });
